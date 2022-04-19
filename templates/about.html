@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="Welcome to the most luxurious hotel in Noida, Uttar Pradesh">
+  <meta name="keywords" name="hotel, noida hotel, luxurious hotels in noida">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" media="screen and (max-width: 769px)" href="{ % static 'css/mobile.css' %}">  
+  <link rel="stylesheet" media="screen and (max-width: 769px)" href="{% static 'css/img'%}">
+  <title>GetHotel | About</title>  
+</head>
+<body>
+  <header>
+  <nav id="navbar">
+    <div class="container">
+    <h1 class="logo"><a href="{% url 'index' %}">GetHotel</a></h1>
+  <ul>
+    <li><a href="{% url 'index' %}">Home</a></li>
+    <li><a href="{%url 'about'%}">About</a></li>
+    <li><a href="{%url 'contact'%}">Contact</a></li>
+    {% if request.user.is_authenticated %}
+    Hello {{ request.user.username }},
+    <li> <a href="{% url "logout" %}">Logout</a></li>
+    {% else %}
+    <li><a href="{% url "login" %}">Log-in</a></li>
+    {% endif %}
+    <li><a href="{%url 'profile'%}">Profile</a></li>
+  </ul>
+</div>
+</nav>
+</header>
+
+<section id="about-info" class="bg-light py-3">
+  <div class="container">
+    <div class="info-left">
+      <h1 class="l-heading"><span class="text-primary">
+        About</span>GetHotel</h1>
+        <p>is an establishment that provides paid lodging on a short-term basis. Facilities provided inside a hotel room may range from a modest-quality mattress in a small room to large suites with bigger, higher-quality beds, a dresser, a refrigerator and other kitchen facilities, upholstered chairs, a flat screen television, and en-suite bathrooms.</p>
+          <p> Small, lower-priced hotels may offer only the most basic guest services and facilities. Larger, higher-priced hotels may provide additional guest facilities such as a swimming pool, business centre (with computers, printers, and other office equipment), childcare, conference and event facilities, tennis or basketball courts, gymnasium, restaurants, day spa, and social function services. Hotel rooms are usually numbered (or named in some smaller hotels and BBs) to allow guests to identify their room.</p>
+    </div>
+    <div class="info-right">
+      <img src="{% static 'img/img2.jpg' %}" alt="hotel">
+    </div>
+  </div>
+</section>
+<div class="clr"></div>
+
+<section id="testimonials" class="py-3">
+  <div class="container">
+    <h2 class="l-heading">What the users say</h2>
+    <div class="testimonial bg-primary">
+      <img src="{% static 'img/img4.jpg' %}" alt="Samantha">
+      <p>Stunning night time vista of a beautiful city from every window… excellent in room facilities, we’ll definitely be back, go there and indulge Yourself!!! 10/10 👍🏻</p>
+    </div>
+    <div class="testimonial bg-primary">
+      <img src="{% static 'img/img6.jpg' %}" alt="Rubina">
+      <p>Good location, small room Enough for some days. host is nice and internet works ok. Nothing to complain.</p>
+    </div>
+    <div class="testimonial bg-primary">
+        <img src="{% static 'img/decap.jpg' %}" alt="Rubina">
+        <p>Good location, small room Enough for some days. host is nice and internet works ok. Nothing to complain.</p>
+    </div>
+    <div class="testimonial bg-primary">
+          <img src="{% static 'img/rock.jpg' %}" alt="Rubina">
+          <p>Good location, small room Enough for some days. host is nice and internet works ok. Nothing to complain.</p>
+    </div>
+    <div class="testimonial bg-primary">
+            <img src="{% static 'img/grande.jpeg' %}" alt="Rubina">
+            <p>Good location, small room Enough for some days. host is nice and internet works ok. Nothing to complain.</p>
+    </div>
+</section>
+<footer id="main-footer">
+ GetHotel &copy; 2022, All Rights Reserved 
+</footer>
+</body>
+</html>

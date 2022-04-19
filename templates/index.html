@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="Get Yourself a preferable stay at your favourite destination">
+  <meta name="keywords" name="Travel with Us">
+  <script src="https://kit.fontawesome.com/e7783e5772.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" media="screen and (max-width: 769px)" href="{ % static 'css/mobile.css' %}">  
+  <link rel="stylesheet" media="screen and (max-width: 769px)" href="{% static 'img'%}">
+  <title>GetHotel | Welcome</title>
+</head>
+<body>
+  <header>
+    <nav id="navbar">
+      <div class="container">
+      <h1 class="logo"><a href="{% url 'index' %}">GetHotel</a></h1>
+    <ul>
+      <li><a href="{% url 'index' %}">Home</a></li>
+      <li><a href="{%url 'about'%}">About</a></li>
+      <li><a href="{%url 'contact'%}">Contact</a></li>
+      {% if request.user.is_authenticated %}
+      Hello {{ request.user.username }},
+      <li> <a href="{% url "logout" %}">Logout</a></li>
+      {% else %}
+      <li><a href="{% url "login" %}">Log-in</a></li>
+      {% endif %}
+      <li><a href="{%url 'profile'%}">Profile</a></li>
+    </ul>
+  </div>
+  </nav>
+<div id="showcase">
+  <div class="container">
+    <div class="showcase-content">
+      <h1><span class="text-primary">Enjoy</span> 
+        Your Stay</h1>
+      <p class="lead">My definition of a good hotel is a place I'd stay at.</p>
+        <a class="btn" href="{% url 'hotels' %}">GET SUGGESTIONS</a>
+    </div>
+  </div>
+</div>
+</header>
+
+<section id="home-info" class="bg-dark">
+  <div class="info-content">
+    <h2><span class="text-primary">
+      Find a stay</span> With your vibe</h2>
+      <p>GetHotel aims at suggesting properties/hotels to you such that they would prefer the recommended property over others.
+      </p>
+      <a href="{%url 'about'%}" class="btn btn-light">Read More</a>
+
+  </div>
+  
+</section>
+<section id="features">
+  <div class="box bg-light">
+    <i class="fas fa-hotel fa-3x"></i>
+    <h3>Discover</h3>
+    <p>Lorem ipsum dolor sit amet consectetur 
+      adipisicing elit. Nisi, earum.</p>
+  </div>
+  <div class="box bg-primary">
+    <i class="fas fa-utensils fa-3x"></i>
+    <h3>Food</h3>
+    <p>Lorem ipsum dolor sit amet consectetur 
+      adipisicing elit. Nisi, earum.</p>
+    </div>
+  <div class="box bg-light">
+    <i class="fas fa-dumbbell fa-3x"></i>
+    <h3>Vibe</h3>
+    <p>Lorem ipsum dolor sit amet consectetur 
+      adipisicing elit. Nisi, earum.</p>
+    </div>
+</section>
+<div class="hero-text">
+  <h1>Some Hotels</h1>
+</div>
+<div class="container">
+  <div class="row">
+      <div class="column">
+          <img src="{% static 'img/hyat.jpg' %}" alt="Hyatt Regency" style="width:100%">
+          <h1>Hyat Regency Kathmandu
+          </h1>
+          <a class="btn" href="{% url 'hotels' %}">Check Details</a>
+      </div>
+     <div class="column">
+     <img src="{% static 'img/marriot.jpg' %}" alt="Kathmandu Marriot Hotel" style="width:100%">
+     <h1>Kathmandu Marriot hotel</h1>
+     <a class="btn" href="{% url 'hotels' %}">Check Details</a>
+     </div>
+  </div>
+  <div class="row">
+   <div class="column">
+      <img src="{% static 'img/soaltee.jpg' %}"alt="Soaltee Crown Plaza" style="width:100%">
+      <h1>Soaltee Crown Plaza</h1>
+      <a class="btn" href="{% url 'hotels' %}">Check Details</a>
+      </div>
+   <div class="column">
+      <img src="{% static 'img/soaltee.jpg' %}" alt="Shankar Hotel" style="width:100%">
+      <h1>Shankar Hotel</h1>
+      <a class="btn" href="{% url 'hotels' %}">Check Details</a>
+    </div>
+  </div>
+</div>
+<!-- Container (Contact Section) -->
+<div id="contact" class="container-fluid bg-grey">
+  <h2 class="text-center">CONTACT</h2>
+  <div class="row">
+    <div class="col-sm-5">
+      <p>Contact us and we'll get back to you within 24 hours.</p>
+      <p><span class="glyphicon glyphicon-map-marker"></span> New Baneshwor, Shankhamul Rd</p>
+      <p><span class="glyphicon glyphicon-phone"></span> 014412202</p>
+      <p><span class="glyphicon glyphicon-envelope"></span> gethotel@gmail.com</p>
+    </div>
+    <div class="col-sm-7 slideanim">
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          {%csrf_token%}
+          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+        </div>
+      </div>
+      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <button class="btn btn-default pull-right" type="submit">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+<footer id="main-footer">
+  GetHotel &copy; 2022, All Rights Reserved 
+</footer>
+
+</html>

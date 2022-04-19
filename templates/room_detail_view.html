@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="Get Yourself a preferable stay at your favourite destination">
+  <meta name="keywords" name="Travel with Us">
+  <script src="https://kit.fontawesome.com/e7783e5772.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+  {% comment %} <link rel="stylesheet" media="screen and (max-width: 769px)" href="{ % static 'css/mobile.css' %}">    {% endcomment %}
+  <link rel="stylesheet" media="screen and (max-width: 769px)" href="{% static 'img' %}">
+  <title>GetHotel | Hotels</title>  
+</head>
+<body>
+  <header>
+    <nav id="navbar">
+      <div class="container">
+      <h1 class="logo"><a href="{% url 'index' %}">GetHotel</a></h1>
+    <ul>
+      <li><a href="{% url 'index' %}">Home</a></li>
+      <li><a href="{%url 'about'%}">About</a></li>
+      <li><a href="{%url 'contact'%}">Contact</a></li>
+      {% if request.user.is_authenticated %}
+      Hello {{ request.user.username }},
+      <li><a href="{% url "logout" %}">Logout</a></li>
+      {% else %}
+      <li><a href="{% url "login" %}">Log-in</a></li>
+      {% endif %}
+      <li><a href="{%url 'profile'%}">Profile</a></li>
+    </ul>
+  </div>
+  </nav>
+</header>
+<div class="hero-text">
+    <h2>ROOM OF YOUR CHOICE</h2>
+</div>
+ <!-- Main Content -->
+ <div class="content">
+
+    <!-- Room Image -->
+    <div class="image">
+        <img
+            src="{% static 'img/ppbed.jpg' %}">
+    </div>
+
+    <!-- Room Details -->
+    <div class="room">
+
+        <!-- Div 1: Back to Home -->
+        <div class="home">
+            <a href="{%url 'BookingListView' %} "><i class='fas fa-reply'>Go Back</i></a>
+        </div>
+
+        <!-- Div 2: Room Information -->
+        <div class="room-info">
+            <h1>{{room_category}} ROOM</h1>
+            <p><br>GET HOTEL GET HAPPINESS</br> </p>
+        </div>
+
+        <!-- Div 3: Room Booking Form -->
+        <form id="booking-form" action="" method="POST">
+
+            {% csrf_token %}
+
+            <!-- Input Div -->
+            <div class="input-div">
+                <label for="id_check_in">Check In : </label>
+                <input type="datetime-local" id="id_check_in" name="check_in">
+            </div>
+
+            <!-- Input Div -->
+            <div class="input-div">
+                <label for="id_check_out">Check Out : </label>
+                <input type="datetime-local" id="id_check_out" name="check_out">
+            </div>
+
+            <!-- Input Div -->
+            <div class="input-id">
+              <button class="btn" type="submit">Book the Room</button>
+          </div>
+
+        </form>
+    </div> <!-- END Room Div -->
+
+</div> <!-- END Main Content Div -->
+
+
+</body>
+<footer id="main-footer">
+  GetHotel &copy; 2022, All Rights Reserved 
+</footer>
+
+</html>

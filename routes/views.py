@@ -3,10 +3,11 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 from .forms import CreateUserForm
 from django.views.generic import ListView, FormView, View, DeleteView
-from .models import Hotels, Room, Booking
+from .models import Hotels, Room, Booking, Contact
 from .forms import AvailabilityForm
 from routes.booking_functions.availability import check_availability
 
@@ -43,7 +44,7 @@ def RoomListView(request):
     return render(request, 'room_list_view.html', context)
 
 
-class BookingListView(ListView):
+class BookingListView(LoginRequiredMixin, ListView):
     model = Booking
     template_name = "booking_list.html"
     
@@ -99,31 +100,31 @@ class RoomDetailView(View):
         else:
             return HttpResponse('All of this category of rooms are booked!! Try another one')
 
+# @login_required
+# class BookingView(FormView):
+#     form_class = AvailabilityForm
+#     template_name = 'availability_form.html'
 
-class BookingView(FormView):
-    form_class = AvailabilityForm
-    template_name = 'availability_form.html'
+#     def form_valid(self, form):
+#         data = form.cleaned_data
+#         room_list = Room.objects.filter(category=data['room_category'])
+#         available_rooms = []
+#         for room in room_list:
+#             if check_availability(room, data['check_in'], data['check_out']):
+#                 available_rooms.append(room)
 
-    def form_valid(self, form):
-        data = form.cleaned_data
-        room_list = Room.objects.filter(category=data['room_category'])
-        available_rooms = []
-        for room in room_list:
-            if check_availability(room, data['check_in'], data['check_out']):
-                available_rooms.append(room)
-
-        if len(available_rooms) > 0:
-            room = available_rooms[0]
-            booking = Booking.objects.create(
-                user=self.request.user,
-                room=room,
-                check_in=data['check_in'],
-                check_out=data['check_out']
-            )
-            booking.save()
-            return HttpResponse(booking)
-        else:
-            return HttpResponse('All of this category of rooms are booked!! Try another one')
+#         if len(available_rooms) > 0:
+#             room = available_rooms[0]
+#             booking = Booking.objects.create(
+#                 user=self.request.user,
+#                 room=room,
+#                 check_in=data['check_in'],
+#                 check_out=data['check_out']
+#             )
+#             booking.save()
+#             return HttpResponse(booking)
+#         else:
+#             return HttpResponse('All of this category of rooms are booked!! Try another one')
 
 def index(request):
     
@@ -133,7 +134,7 @@ def about(request):
 
     return render(request, "about.html")
 
- 
+
 def hotels(request):
     if 'q' in request.GET:
         q = request.GET['q']
@@ -146,8 +147,17 @@ def hotels(request):
     
 
 def contact(request):
+    if request.method=="POST":
+        print(request)
+        name = request.POST.get('name' , '')
+        email = request.POST.get('email' , '')
+        message = request.POST.get('message' , '')
+        print(name, email, message)
+        contact = Contact(name=name,email=email,message=message)
+        contact.save()
+        
     return render(request, "contact.html")
-
+@login_required
 def profile(request):
     return render(request, "profile.html")
 

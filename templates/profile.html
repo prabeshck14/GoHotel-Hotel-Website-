@@ -35,21 +35,23 @@
   </ul>
 </div>
 </nav>
-{% block content %}
-    <div class="content-section">
+    <div class="container-fluid">
       <div class="media">
         <img class="rounded-circle account-img" src="{{ user.profile.image.url }}"></img>
         <div class="media-body">
+          <form method="post" enctype="multipart/form-data">  
+            {% csrf_token %}  
+            {{ form.as_p }}  
+            <button type="submit">Upload</button>  
+        </form>
           <h2 class="account-heading">{{ user.username }}</h2>
           <p class="text-secondary">{{user.first_name}} {{user.last_name}}</p>
           <p class="text-secondary">{{ user.email }}</p>
-          <a class="btn" href="{% url 'BookingListView' %}">Check Your Bookings</a>
+          <a class="btn" href="{% url 'BookingListView' %}">Your Bookings Details</a>
         </div>
       </div>
-      <!-- FORM HERE -->
     </div>
-
-{% endblock content %}
+  </body>
 <footer id="main-footer">
     GetHotel &copy; 2022, All Rights Reserved 
   </footer>

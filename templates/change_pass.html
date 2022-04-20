@@ -32,19 +32,21 @@
     </ul>
   </div>
   </nav>
-<form action="" method="POST" novalidate >
-    {%csrf_token%}
-    {%if form.non_field_errors%}
-      {%for error in form.non_field_errors%}
-        <p>{{error}}</p>
-      {% endfor %}
-    {% endif %}
+  <div class="container-fluid">
+    <form action="" method="POST" novalidate >
+        {%csrf_token%}
+        {%if form.non_field_errors%}
+          {%for error in form.non_field_errors%}
+            <p>{{error}}</p>
+          {% endfor %}
+        {% endif %}
 
-    {%for fm in form%}
-      {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}<br><br>
-    {% endfor %}
-      <input type="submit" value="Save">
-</form>
+        {%for fm in form%}
+          {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}<br><br>
+        {% endfor %}
+          <input class = "btn" type="submit" value="Save">
+    </form>
+</div>
 </body>
 <footer id="main-footer">
 	GetHotel &copy; 2022, All Rights Reserved 

@@ -46,7 +46,7 @@ class Booking(models.Model):
     check_out = models.DateTimeField()
 
     def __str__(self):
-        return f' Hey, {self.user} You have booked {self.room} from {self.check_in} to {self.check_out}'
+        return f' Hey, {self.user} You have booked room no. {self.room} from {self.check_in} to {self.check_out}'
 
     def get_room_category(self):
         room_categories = dict(self.room.ROOM_CATEGORIES)
@@ -55,3 +55,14 @@ class Booking(models.Model):
 
     def get_cancel_booking_url(self):
         return reverse('CancelBookingView', args=[self.pk, ])
+
+class Contact(models.Model):
+    Msg_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+    email = models.CharField(max_length=100, default="")
+    message = models.CharField(max_length=500, default="")
+
+    def __str__(self):
+        return self.name
+        
+     

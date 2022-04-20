@@ -18,6 +18,8 @@ class Profile (models.Model):
 class Hotels(models.Model):
     name = models.CharField(max_length=100)
     img = models.ImageField(upload_to='pics')
+    location = models.TextField(max_length=50,default="")
+    rating = models.CharField(max_length=10,default="")
     desc = models.TextField()
 
     def __str__(self):
@@ -31,6 +33,7 @@ class Room(models.Model):
         ('KIN','KING'),
         ('QUE','QUEEN'),
     )
+    image = models.ImageField(upload_to='pics',default="")
     number= models.IntegerField()
     category = models.CharField(max_length=15, choices=ROOM_CATEGORIES)
     beds = models.IntegerField()

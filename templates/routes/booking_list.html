@@ -35,15 +35,16 @@
   </nav>
 </header>
 <div class="hero-text">
-    <h1>BOOKING LIST</h1>
-    <br><h2><a class="btn" href="{% url 'RoomListView' %}">CHECK AVAILABLE ROOMS</a><h2></br>
-    <br><h1>Welcome dear {{user}}</h1></br>
-</div>
+  <br><h1>Welcome dear {{user}}</h1></br>
+  <h1>BOOKING LIST</h1>
+  <br><a class ="btn-floatformat" href="{%url 'hotels' %} "><i class='fas fa-reply'>Go Back</i></a><h2><a class="btn" href="{% url 'RoomListView' %}">CHECK AVAILABLE ROOMS</a><h2></br>
+    
+  </div>
     
 <div class="bookings">
     {% for booking in booking_list %}
       <div class="booking">
-          <img src="{% static 'img/ppbed.jpg' %}" alt="">
+          <img src="{% static 'img/ac.jpg' %}" alt="">
           <div class="category">
               <h2>{{booking.get_room_category}} ROOM</h2>
           </div>

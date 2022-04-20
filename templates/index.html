@@ -38,7 +38,7 @@
       <h1><span class="text-primary">Enjoy</span> 
         Your Stay</h1>
       <p class="lead">My definition of a good hotel is a place I'd stay at.</p>
-        <a class="btn" href="{% url 'hotels' %}">GET SUGGESTIONS</a>
+        <a class="btn" href="{% url 'hotels' %}">Search For Hotels</a>
     </div>
   </div>
 </div>
@@ -59,20 +59,17 @@
   <div class="box bg-light">
     <i class="fas fa-hotel fa-3x"></i>
     <h3>Discover</h3>
-    <p>Lorem ipsum dolor sit amet consectetur 
-      adipisicing elit. Nisi, earum.</p>
+    <p> Make a movement between distant geographical locations. Travel can be done by foot, bicycle, automobile, train, boat, bus, airplane, ship or other means, with or without luggage, and can be one way or round trip</p>
   </div>
   <div class="box bg-primary">
     <i class="fas fa-utensils fa-3x"></i>
     <h3>Food</h3>
-    <p>Lorem ipsum dolor sit amet consectetur 
-      adipisicing elit. Nisi, earum.</p>
+    <p> Food the movement of people between distant geographical locations. Travel can be done by foot, bicycle, automobile, train, boat, bus, airplane, ship or other means, with or without luggage, and can be one way or round trip</p>
     </div>
   <div class="box bg-light">
     <i class="fas fa-dumbbell fa-3x"></i>
     <h3>Vibe</h3>
-    <p>Lorem ipsum dolor sit amet consectetur 
-      adipisicing elit. Nisi, earum.</p>
+    <p> Vibe the movement of people between distant geographical locations. Travel can be done by foot, bicycle, automobile, train, boat, bus, airplane, ship or other means, with or without luggage, and can be one way or round trip</p>
     </div>
 </section>
 <div class="hero-text">
@@ -106,9 +103,20 @@
   </div>
 </div>
 <!-- Container (Contact Section) -->
-<div id="contact" class="container-fluid bg-grey">
-  <h2 class="text-center">CONTACT</h2>
+<div id="contact" class="bg-grey">
+  <br>
+  <h1 class="text-center">Useful Links</h1>
+  </br>
   <div class="row">
+    <ul>
+      <h3>
+        <br><li><a href="{%url 'hotels'%}">Search Hotels</a></li></br>
+        <br><li><a href="{% url 'index' %}">Home</a></li></br>
+        <br><li><a href="{%url 'about'%}">About</a></li></br>
+        <br><li><a href="{%url 'contact'%}">Contact</a></li></br>
+      </h3>
+    </ul>
+    
     <div class="col-sm-5">
       <p>Contact us and we'll get back to you within 24 hours.</p>
       <p><span class="glyphicon glyphicon-map-marker"></span> New Baneshwor, Shankhamul Rd</p>

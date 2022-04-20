@@ -9,6 +9,7 @@
   <meta name="keywords" name="Travel with Us">
   <script src="https://kit.fontawesome.com/e7783e5772.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" media="screen and (max-width: 769px)" href="{ % static 'css/mobile.css' %}">  
   <link rel="stylesheet" media="screen and (max-width: 769px)" href="{% static 'img' %}">
   <title>GetHotel | Hotels</title>  
@@ -34,19 +35,15 @@
   </nav>
 </header>
 <div class="hero-text">
-    <h1>HOTELS AVAILABLE</h1>
+  <h2>Let Us Know Your Destination</h2>
 </div>
 <!--Search!-->
 <div class="jumbotron border shadow">
   <div class="row">
       <div class="col-md-8 offset-2">
-          <form>
-              <div class="input-group">
-                  <input name="q" type="text" placeholder="Search" class="form-control" />
-                  <div class="input-group-append">
-                      <button class="btn btn-dark btn-lg">Search</button>
-                  </div>
-              </div>
+          <form class="example" action="">{%csrf_token%}
+            <input name ="q"type="text" placeholder="..Your Destination Here.." name="search">
+            <button class ="btn" type="submit"><i class="fa fa-search"></i></button>
           </form>
       </div>
   </div>
@@ -55,8 +52,10 @@
   {%for hotel in hotel%}
       <div class="row">
         <div class="column">
-            <img src="{{hotel.img.url}}" alt="" style="width:100%">
+            <h3><img src="{{hotel.img.url}}" alt="" style="width:100%"><h3>
             <h1>{{hotel.name}}</h1>
+            <h3><i class='fas fa-map-marker-alt'></i> {{hotel.location}}<br>Rating : {{hotel.rating}}</br></h3>
+
             <p>{{hotel.desc}}</p>
             <a class="btn" href="{% url 'BookingListView' %}">Check Booking Details</a>
         </div>

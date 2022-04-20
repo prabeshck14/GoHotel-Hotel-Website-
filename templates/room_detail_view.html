@@ -10,7 +10,7 @@
   <script src="https://kit.fontawesome.com/e7783e5772.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" href="{% static 'css/detail.css' %}">
-  {% comment %} <link rel="stylesheet" media="screen and (max-width: 769px)" href="{ % static 'css/mobile.css' %}">    {% endcomment %}
+  <link rel="stylesheet" media="screen and (max-width: 769px)" href="{ % static 'css/mobile.css' %}">   
   <link rel="stylesheet" media="screen and (max-width: 769px)" href="{% static 'img' %}">
   <title>GetHotel | Hotels</title>  
 </head>
@@ -35,15 +35,14 @@
   </nav>
 </header>
 <div class="hero-text">
-    <h2>ROOM OF YOUR CHOICE</h2>
+    <h2>Make a Booking</h2>
 </div>
  <!-- Main Content -->
  <div class="content">
 
     <!-- Room Image -->
     <div class="image">
-        <img
-            src="{% static 'img/ppbed.jpg' %}">
+        <img src="{% static 'img/ppbed.jpg' %}">
     </div>
 
     <!-- Room Details -->
@@ -57,7 +56,6 @@
         <!-- Div 2: Room Information -->
         <div class="room-info">
             <h1>{{room_category}} ROOM</h1>
-            <p><br>GET HOTEL GET HAPPINESS</br> </p>
         </div>
 
         <!-- Div 3: Room Booking Form -->
@@ -78,19 +76,21 @@
             </div>
 
             <!-- Input Div -->
-            <div class="input-id">
+            <div class="input-div">
               <button class="btn" type="submit">Book the Room</button>
           </div>
 
-        </form>
+        </form> 
     </div> <!-- END Room Div -->
 
 </div> <!-- END Main Content Div -->
 
 
 </body>
+
+
 <footer id="main-footer">
   GetHotel &copy; 2022, All Rights Reserved 
-</footer>
+</footer> 
 
 </html>

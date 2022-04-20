@@ -1,12 +1,12 @@
 from django.shortcuts import render , redirect , HttpResponseRedirect , HttpResponse
-from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 from .forms import CreateUserForm
-from django.views.generic import ListView, FormView, View, DeleteView
+from django.views.generic import ListView, View, DeleteView
 from .models import Hotels, Room, Booking, Contact
 from .forms import AvailabilityForm
 from routes.booking_functions.availability import check_availability
@@ -58,6 +58,7 @@ class BookingListView(LoginRequiredMixin, ListView):
 
 
 class RoomDetailView(View):
+    
     def get(self, request, *args, **kwargs):
         category = self.kwargs.get('category', None)
         form = AvailabilityForm()
@@ -138,7 +139,7 @@ def about(request):
 def hotels(request):
     if 'q' in request.GET:
         q = request.GET['q']
-        hotel = Hotels.objects.filter(name__icontains=q)
+        hotel = Hotels.objects.filter(location__icontains=q)
     else:
         hotel = Hotels.objects.all()
     
@@ -157,6 +158,7 @@ def contact(request):
         contact.save()
         
     return render(request, "contact.html")
+
 @login_required
 def profile(request):
     return render(request, "profile.html")

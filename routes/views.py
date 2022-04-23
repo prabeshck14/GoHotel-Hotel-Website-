@@ -1,14 +1,16 @@
+from multiprocessing import context
+import re
 from django.shortcuts import render , redirect , HttpResponseRedirect , HttpResponse
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
-from .forms import CreateUserForm
 from django.views.generic import ListView, View, DeleteView
 from .models import Hotels, Room, Booking, Contact
-from .forms import AvailabilityForm
+from .forms import AvailabilityForm, CreateUserForm
 from routes.booking_functions.availability import check_availability
 
 
@@ -101,31 +103,6 @@ class RoomDetailView(View):
         else:
             return HttpResponse('All of this category of rooms are booked!! Try another one')
 
-# @login_required
-# class BookingView(FormView):
-#     form_class = AvailabilityForm
-#     template_name = 'availability_form.html'
-
-#     def form_valid(self, form):
-#         data = form.cleaned_data
-#         room_list = Room.objects.filter(category=data['room_category'])
-#         available_rooms = []
-#         for room in room_list:
-#             if check_availability(room, data['check_in'], data['check_out']):
-#                 available_rooms.append(room)
-
-#         if len(available_rooms) > 0:
-#             room = available_rooms[0]
-#             booking = Booking.objects.create(
-#                 user=self.request.user,
-#                 room=room,
-#                 check_in=data['check_in'],
-#                 check_out=data['check_out']
-#             )
-#             booking.save()
-#             return HttpResponse(booking)
-#         else:
-#             return HttpResponse('All of this category of rooms are booked!! Try another one')
 
 def index(request):
     
@@ -159,26 +136,24 @@ def contact(request):
         
     return render(request, "contact.html")
 
-@login_required
-def profile(request):
-    return render(request, "profile.html")
-
 def registerPage(request):
-    if request.user.is_authenticated:
-        return redirect('index')
-    else:
-        form = CreateUserForm()
-        if request.method == 'POST':
-            form = CreateUserForm(request.POST)
-            if form.is_valid():
-                form.save()
-                user = form.cleaned_data.get('username')
-                messages.success(request, 'Account was created for ' + user)
+	if request.user.is_authenticated:
+		return redirect('index')
+	else:
+		form = CreateUserForm()
+		if request.method == 'POST':
+			form = CreateUserForm(request.POST)
+			if form.is_valid():
+				form.save()
+				user = form.cleaned_data.get('username')
+				messages.success(request, 'Account was created for ' + user)
 
-                return redirect('login')
+				return redirect('login')
+			
 
-        context = {'form': form}
-        return render(request, 'register.html', context)
+		context = {'form':form}
+		return render(request, 'register.html', context)
+
 
 def loginPage(request):
     if request.user.is_authenticated:
@@ -202,6 +177,10 @@ def loginPage(request):
 def logoutUser(request):
     logout(request)
     return redirect('login')
+
+@login_required
+def profile(request):
+    return render(request, "profile.html")
 
 
 #change password 

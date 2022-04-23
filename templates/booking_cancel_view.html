@@ -61,12 +61,11 @@
 
         <!-- Div 3: Room Booking Form -->
         <form id="booking-form" action="" method="POST">
-
             {% csrf_token %}
             <h2>Are you sure you want to cancel this booking?</h2><br> Details:</br>
             <h3>{{booking.room.number}} {{booking.get_room_category}} From {{booking.check_in}} to {{booking.check_out}}</h3>
             <!-- Input Div -->
-            <div class="input-id">
+            <div class="input-div">
               <button class= "btn" type="submit"><a href="{%url 'BookingListView' %} ">Cancel Booking</a></button>
           </div>
         </form>

@@ -18,7 +18,7 @@
   <header>
     <nav id="navbar">
       <div class="container">
-      <h1 class="logo"><a href="{% url 'index' %}">GetHotel</a></h1>
+      <h1 class="logo"><a href="{% url 'index' %}"><span class="text-primary">Get</span>Hotel</a></h1>
     <ul>
       <li><a href="{% url 'index' %}">Home</a></li>
       <li><a href="{%url 'about'%}">About</a></li>
@@ -35,18 +35,18 @@
   </nav>
 </header>
 <div class="hero-text">
-  <br><h1>Welcome dear {{user}}</h1></br>
-  <h1>YOUR BOOKING LIST</h1>
-  <br><a class ="btn-floatformat" href="{%url 'hotels' %} "><i class='fas fa-reply'>Go Back</i></a><h2><a class="btn" href="{% url 'RoomListView' %}">CHECK AVAILABLE ROOMS</a><h2></br>
+  <br><h1><span class="text-primary">Welcome dear</span> {{user}}</h1></br>
+  <h1><span class="text-primary">YourBook</span>ingList</h1>
+  <br><a class ="btn-floatformat" href="{%url 'hotels' %} "><i class='fas fa-reply'><span class="text-primary">Go</span>Back</i></a><h2><a class="btn" href="{% url 'RoomListView' %}">CHECK AVAILABLE ROOMS</a><h2></br>
     
   </div>
     
-<div class="bookings">
+<div class="bookings bg-light">
     {% for booking in booking_list %}
       <div class="booking">
           <img src="{% static 'img/ac.jpg' %}" alt="">
           <div class="category">
-              <h2>{{booking.get_room_category}} ROOM</h2>
+              <h2>{{booking.get_room_category}}<span class="text-primary"> ROOM</span></h2>
           </div>
           <div class="from">
               <h3>From: {{booking.check_in}}</h3>

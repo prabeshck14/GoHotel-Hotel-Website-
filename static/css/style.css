@@ -82,6 +82,7 @@ p {
 
 .clr {
   clear:both;
+
 }
 
 .l-heading {
@@ -101,6 +102,7 @@ p {
 
 #navbar .logo {
   float: left;
+  display: inline-block;
   padding-top: 20px;
 }
 
@@ -159,23 +161,27 @@ p {
   min-height: 100%;
 }
 
+#home-info .info-content{
+  align-content: center;
+
+}
 #home-info .info-content {
- float: right ;
   width: 50%;
   height:100%;
   text-align: center;
   padding: 50px 30px 50px 25px;
   align-content: center;
   overflow: hidden;
-}
+} */
 
-#home-info .info-content {
+ #home-info .info-content {
+  float: left;
   padding-top: 50px;
   padding-right: 50px;
   text-align: center;
   font-size: large;
-}
-#home-info .bg-dark{
+} 
+  #home-info .bg-dark{
   padding-left: 50px;
   text-align: center;
 }

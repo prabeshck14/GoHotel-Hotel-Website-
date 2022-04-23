@@ -9,7 +9,7 @@
   <meta name="keywords" name="Travel with Us">
   <script src="https://kit.fontawesome.com/e7783e5772.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+  <link rel="stylesheet" href="{% static 'css/room_detail_view.css' %}">
   <link rel="stylesheet" media="screen and (max-width: 769px)" href="{ % static 'css/mobile.css' %}">   
   <link rel="stylesheet" media="screen and (max-width: 769px)" href="{% static 'img' %}">
   <title>GetHotel | Hotels</title>  
@@ -18,7 +18,7 @@
   <header>
     <nav id="navbar">
       <div class="container">
-      <h1 class="logo"><a href="{% url 'index' %}">GetHotel</a></h1>
+      <h1 class="logo"><a href="{% url 'index' %}"><span class="text-primary">Get</span>Hotel</a></h1>
     <ul>
       <li><a href="{% url 'index' %}">Home</a></li>
       <li><a href="{%url 'about'%}">About</a></li>

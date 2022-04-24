@@ -428,3 +428,8 @@ form.example::after {
   clear: both;
   display: table;
 }
+
+
+.card{
+  align-content: center;
+}

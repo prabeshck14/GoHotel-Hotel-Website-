@@ -1,3 +1,4 @@
+from email.mime import image
 from multiprocessing import context
 import re
 from django.shortcuts import render , redirect , HttpResponseRedirect , HttpResponse
@@ -8,9 +9,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
-from django.views.generic import ListView, View, DeleteView
+from django.views.generic import ListView, View, DeleteView, TemplateView
 from .models import Hotels, Room, Booking, Contact
-from .forms import AvailabilityForm, CreateUserForm
+from .forms import AvailabilityForm, CreateUserForm, UserForm, ProfileForm
 from routes.booking_functions.availability import check_availability
 
 
@@ -24,12 +25,14 @@ class CancelBookingView(DeleteView):
 
 @login_required
 def RoomListView(request):
+
     if 'q' in request.GET:
         q = request.GET['q']
         ROOM_CATEGORIES = Room.objects.filter(capacity__icontains=q)
     else:
         ROOM_CATEGORIES = Room.objects.all()
-
+    
+    image = Room.objects.all()
 
     room = Room.objects.all()[0]
     room_categories = dict(room.ROOM_CATEGORIES)
@@ -75,7 +78,7 @@ class RoomDetailView(View):
             }
             return render(request, 'room_detail_view.html', context)
         else:
-            return HttpResponse('Category does not exist')
+            room_category = Rooms.Objects.all()
 
     def post(self, request, *args, **kwargs):
         category = self.kwargs.get('category', None)
@@ -192,10 +195,42 @@ def change_pass(request):
                 fm.save()
                 update_session_auth_hash(request, fm.user)
                 messages.success(request,'Password Changed Successfully')
-                return HttpResponseRedirect('/profile/')
+                return HttpResponseRedirect('/login/')
         else:
             fm = PasswordChangeForm(user=request.user)
         return render(request,'change_pass.html', {'form':fm})
     else:
-        return HttpResponseRedirect('/login/')
+        return HttpResponseRedirect('login.html')
 
+
+class ProfileView(LoginRequiredMixin, TemplateView):
+    template_name = 'profile.html'
+
+class ProfileUpdateView(LoginRequiredMixin, TemplateView):
+    user_form = UserForm
+    profile_form = ProfileForm
+    template_name = 'profile-update.html'
+
+    def post(self, request):
+
+        post_data = request.POST or None
+        file_data = request.FILES or None
+
+        user_form = UserForm(post_data, instance=request.user)
+        profile_form = ProfileForm(post_data, file_data, instance=request.user.profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.error(request, 'Your profile is updated successfully!')
+            return HttpResponseRedirect(reverse_lazy('profile'))
+
+        context = self.get_context_data(
+                                        user_form=user_form,
+                                        profile_form=profile_form
+                                    )
+
+        return self.render_to_response(context)     
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)

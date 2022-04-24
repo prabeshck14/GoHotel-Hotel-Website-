@@ -11,13 +11,14 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" media="screen and (max-width: 769px)" href="{ % static 'css/mobile.css' %}">   
   <link rel="stylesheet" media="screen and (max-width: 769px)" href="{% static 'img' %}">
+  <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
   <title>GetHotel | Hotels</title>  
 </head>
 <body>
   <header>
     <nav id="navbar">
       <div class="container">
-      <h1 class="logo"><a href="{% url 'index' %}"><span class="text-primary">Get</span>Hotel</a></h1>
+      <h1 class="logo"><span class="iconify" data-icon="fontisto:holiday-village"></span><a href="{% url 'index' %}"><span class="text-primary">Get</span>Hotel</a></h1>
     <ul>
       <li><a href="{% url 'index' %}">Home</a></li>
       <li><a href="{%url 'about'%}">About</a></li>
@@ -41,13 +42,14 @@
  <div class="row">
     <div class="column">
         <a href="{{room_url}}">
-             <img src="{% static 'img\pew.jpg' %}">
+             <img src="{% static 'img/deluxe.jpg' %}">             
                 <h1>{{room_category}} ROOM</h1>
                 <a class="btn" href="{{room_url}}">Book Now</a>
              <h3><span class="text-primary">Have a better stay </span>with your choice of room.<h3>
         </a>
      </div>
  </div>
+
  {% endfor %}
 
 </body>

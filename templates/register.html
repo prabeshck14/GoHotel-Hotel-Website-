@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
   	<link rel="stylesheet" media="screen and (max-width: 769px)" href="{ % static 'css/mobile.css' %}">  
  	<link rel="stylesheet" media="screen and (max-width: 769px)" href="{% static 'img'%}">
+	<script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
 	<style>
 		body,
 		html {
@@ -73,7 +74,7 @@
 <body>
 	<nav id="navbar">
 		<div class="container">
-	  <h1 class="logo"><a href="{% url 'index' %}">GetHotel</a></h1>
+	  <h1 class="logo"><span class="iconify" data-icon="fontisto:holiday-village"></span><a href="{% url 'index' %}">GetHotel</a></h1>
 	  <ul>
 		<li><a class="current" href="{% url 'index' %}">Home</a></li>
 		<li><a href="{%url 'about'%}">About</a></li>

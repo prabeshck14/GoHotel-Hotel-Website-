@@ -1,4 +1,4 @@
-{% comment %} {% load crispy_forms_tags %} {% endcomment %}
+{% load crispy_forms_tags %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -12,13 +12,14 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" media="screen and (max-width: 769px)" href="{ % static 'css/mobile.css' %}">  
   <link rel="stylesheet" media="screen and (max-width: 769px)" href="{% static 'img'%}">
+  <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
   <title>GetHotel | Welcome</title>
 </head>
 <body>
   <header>
     <nav id="navbar">
       <div class="container">
-      <h1 class="logo"><a href="{% url 'index' %}"><span class="text-primary">Get</span>Hotel</a></h1>
+      <h1 class="logo"><span class="iconify" data-icon="fontisto:holiday-village"></span><a href="{% url 'index' %}"><span class="text-primary">Get</span>Hotel</a></h1>
     <ul>
     <li><a href="{% url 'index' %}">Home</a></li>
     <li><a href="{%url 'about'%}">About</a></li>
@@ -35,9 +36,9 @@
   </ul>
 </div>
 </nav>
-    <div class="container-fluid">
+    {% comment %} <div class="container-fluid">
       <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}"></img>
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
         <div class="media-body">
           <form method="post" enctype="multipart/form-data">  
             {% csrf_token %}  
@@ -51,7 +52,42 @@
         </div>
       </div>
     </div>
-  </body>
+  </body> {% endcomment %}
+  
+  {% block content %}
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+  
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
+          <h1 class="h3 mb-0 text-gray-800"><span class="text-primary">Pro</span>file</h1>
+          </div>          
+  
+          <!-- Main Content Here -->
+          <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-3 my-5">
+              <img src="{{user.profile.image.url}}" class="rounded float-right" height="300px" width="300px">
+            </div>
+            <div class="card o-hidden border-0 shadow-lg my-5 col-lg-5">
+              <div class="card-body">
+                  <h2><span class="text-primary">{{user.first_name}}</span> {{user.last_name}}</h2>
+                  <p><strong><span class="text-primary">Email: </span></strong> {{user.username}} </p>
+                  <p><strong><span class="text-primary">Email: </span></strong> {{user.email}} </p>
+                  <p><strong><span class="text-primary">Bio: </span></strong> {{user.profile.bio}} </p>
+                  <p><strong><span class="text-primary">Phone Number: </span></strong> {{user.profile.phone_number}} </p>
+                  <p><strong><span class="text-primary">DOB: </span></strong> {{user.profile.birth_date}} </p>
+                  <a href="{% url 'profile-update' %}" class="btn btn-sm btn-primary shadow-sm">Update Profile</a>
+              </div>
+            </div>
+          </div>
+          <a class="btn" href="{% url 'BookingListView' %}">Check Your Bookings Details</a>
+          
+          
+          
+      </div>
+      <!-- /.container-fluid -->
+  {% endblock content %}
 <footer id="main-footer">
-    GetHotel &copy; 2022, All Rights Reserved 
+    </span>GetHotel &copy; 2022, All Rights Reserved 
   </footer>

@@ -36,7 +36,7 @@
   </nav>
 </header>
 <div class="hero-text">
-    <h2>BOOKING CANCELATION PAGE</h2>
+    <h2><span class="text-primary">BOOKING </span>CANCELATION <span class="text-primary">PAGE</span></h2>
 </div>
  <!-- Main Content -->
  <div class="content">
@@ -44,7 +44,8 @@
     <!-- Room Image -->
     <div class="image">
         <img
-            src="{% static 'img/ppbed.jpg' %}">
+            {% comment %} src="{% static 'img/ac.jpg' %}"/> {% endcomment %}
+            <img src="{{booking.room.image.url}}"/>
     </div>
 
     <!-- Room Details -->
@@ -52,7 +53,7 @@
 
         <!-- Div 1: Back to Home -->
         <div class="home">
-            <a href="{%url 'BookingListView' %} "><i class='fas fa-reply'>Go Back</i></a>
+            <a href="{%url 'BookingListView' %} "><i class='fas fa-reply'><span class="text-primary">Go </span>Back</i></a>
         </div>
 
         <!-- Div 2: Room Information -->
@@ -63,7 +64,7 @@
         <!-- Div 3: Room Booking Form -->
         <form id="booking-form" action="" method="POST">
             {% csrf_token %}
-            <h2>Are you sure you want to cancel this booking?</h2><br> Details:</br>
+            <h2><span class="text-primary">Are you sure you want </span>to cancel this booking?</h2><br> Details:</br>
             <h3>{{booking.room.number}} {{booking.get_room_category}} From {{booking.check_in}} to {{booking.check_out}}</h3>
             <!-- Input Div -->
             <div class="input-div">

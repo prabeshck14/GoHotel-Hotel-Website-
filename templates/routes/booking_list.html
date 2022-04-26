@@ -45,7 +45,8 @@
 <div class="bookings bg-light">
     {% for booking in booking_list %}
       <div class="booking">
-          <img src="{% static 'img/nac.jpg' %}" alt="">
+          {% comment %} <img src="{% static 'img/nac.jpg' %}" alt=""> {% endcomment %}
+          <img src="{{booking.room.image.url}}"/>
           <div class="category">
               <h2>{{booking.get_room_category}}<span class="text-primary"> ROOM</span></h2>
           </div>

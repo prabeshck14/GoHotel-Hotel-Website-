@@ -155,9 +155,8 @@ p {
 }
 
 #home-info .info-img {
-  float: left;
-  width: 50%;
-  background: url('../img/img7.jpg') no-repeat;
+    width: 100%;
+  background: url('../img/ppbed.jpg') no-repeat;
   min-height: 100%;
 }
 

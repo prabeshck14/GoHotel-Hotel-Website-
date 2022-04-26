@@ -1,4 +1,6 @@
 {% load static %}
+{% load crispy_forms_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +35,11 @@
     </ul>
   </div>
   </nav>
+  
   <div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
+      <h1 class="h3 mb-0 text-gray-800"><span class="text-primary">Change</span> Your<span class="text-primary"> Password</span></h1>
+      </div>
     <form action="" method="POST" novalidate >
         {%csrf_token%}
         {%if form.non_field_errors%}

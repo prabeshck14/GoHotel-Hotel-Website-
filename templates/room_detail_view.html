@@ -39,11 +39,12 @@
     <h2><span class="text-primary">Make</span> a <span class="text-primary">Booking</span></h2>
 </div>
  <!-- Main Content -->
- <div class="content">
+ <div class="content ">
 
     <!-- Room Image -->
     <div class="image">
-        <img src="{% static 'img/ppbed.jpg' %}">
+        {% comment %} <img src="{% static 'img/ppbed.jpg' %}"> {% endcomment %}
+        <img src="{{room.image.url}}"/>
     </div>
 
     <!-- Room Details -->
@@ -57,6 +58,7 @@
         <!-- Div 2: Room Information -->
         <div class="room-info">
             <h1>Book Your {{room_category}} <span class="text-primary">ROOM</span></h1>
+            <p>Feel Like Home</p>
         </div>
 
         <!-- Div 3: Room Booking Form -->
@@ -85,8 +87,6 @@
     </div> <!-- END Room Div -->
 
 </div> <!-- END Main Content Div -->
-
-
 </body>
 
 

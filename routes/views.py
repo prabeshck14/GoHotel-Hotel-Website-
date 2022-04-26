@@ -1,6 +1,7 @@
 from email.mime import image
 from multiprocessing import context
 import re
+from unicodedata import category
 from django.shortcuts import render , redirect , HttpResponseRedirect , HttpResponse
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.forms import UserCreationForm
@@ -21,6 +22,8 @@ class CancelBookingView(DeleteView):
     template_name = 'booking_cancel_view.html'
     success_url = reverse_lazy('BookingListView')
 
+    room = Room.objects.all()[0]
+    context = {'room':room}
 
 
 @login_required
@@ -31,8 +34,7 @@ def RoomListView(request):
         ROOM_CATEGORIES = Room.objects.filter(capacity__icontains=q)
     else:
         ROOM_CATEGORIES = Room.objects.all()
-    
-    image = Room.objects.all()
+
 
     room = Room.objects.all()[0]
     room_categories = dict(room.ROOM_CATEGORIES)
@@ -45,6 +47,7 @@ def RoomListView(request):
         room_list.append((room,room_url))
     context = {
         "room_list":room_list,
+        'room': room,
     }
     return render(request, 'room_list_view.html', context)
 
@@ -75,10 +78,11 @@ class RoomDetailView(View):
             context = {
                 'room_category': room_category,
                 'form': form,
+                'room' : room,
             }
             return render(request, 'room_detail_view.html', context)
         else:
-            room_category = Rooms.Objects.all()
+            room_category = Room.Objects.all()
 
     def post(self, request, *args, **kwargs):
         category = self.kwargs.get('category', None)
@@ -222,7 +226,7 @@ class ProfileUpdateView(LoginRequiredMixin, TemplateView):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            messages.error(request, 'Your profile is updated successfully!')
+            messages.error(request, 'Your profile was updated successfully!')
             return HttpResponseRedirect(reverse_lazy('profile'))
 
         context = self.get_context_data(

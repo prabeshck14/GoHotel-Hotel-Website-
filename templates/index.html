@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" media="screen and (max-width: 769px)" href="{ % static 'css/mobile.css' %}">  
   <link rel="stylesheet" media="screen and (max-width: 769px)" href="{% static 'img'%}">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  {% comment %} <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> {% endcomment %}
   <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
   
   <title>GetHotel | Welcome</title>
@@ -20,7 +20,7 @@
   <header>
     <nav id="navbar">
       <div class="container">
-      <h1 class="logo"><span class="iconify" data-icon="fontisto:holiday-village"></span><a href="{% url 'index' %}"><span class="text-primary">Get</span>Hotel</a></h1>
+     <h1 class="logo"><span class="iconify" data-icon="fontisto:holiday-village"></span><a href="{% url 'index' %}"><span class="text-primary">Get</span>Hotel</a></h1>
     <ul>
       <li><a href="{% url 'index' %}">Home</a></li>
       <li><a href="{%url 'about'%}">About</a></li>
@@ -35,81 +35,16 @@
     </ul>
   </div>
   </nav>
-<div id="showcase">
-  <div class="container">
-    <div class="showcase-content">
-      <h1><span class="text-primary">Enjoy</span> 
-        Your Stay</h1>
-      <p class="lead">My definition of a good hotel is a place I'd stay at.</p>
-        <a class="btn" href="{% url 'hotels' %}">Search For Hotels</a>
+  <div id="showcase">
+    <div class="container">
+      <div class="showcase-content">
+        <h1><span class="text-primary">Enjoy</span> 
+          Your Stay</h1>
+        <p class="lead">My definition of a good hotel is a place I'd stay at.</p>
+          <a class="btn" href="{% url 'hotels' %}">Search For Hotels</a>
+      </div>
     </div>
   </div>
-</div>
-<div class="clr bg-light">
-  <h2 class="w3-center"><span class="text-primary">Hotel</span> Manual</h2>
-
-  <div class="w3-content w3-display-container">
-    <img class="mySlides" src="{% static 'img/s1.jpg' %}" style="width:100%">
-    <img class="mySlides" src="{% static 'img/s2.jpg' %}" style="width:100%">
-    <img class="mySlides" src="{% static 'img/s3.jpg' %}" style="width:100%">
-    <img class="mySlides" src="{% static 'img/s4.jpg' %}" style="width:100%">
-  
-    <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-    <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
-
-  <button class="w3-button demo" onclick="currentDiv(1)">1</button>
-  <button class="w3-button demo" onclick="currentDiv(2)">2</button>
-  <button class="w3-button demo" onclick="currentDiv(3)">3</button>
-  <button class="w3-button demo" onclick="currentDiv(4)">4</button>
-  </div>
-  
-  <script>
-  var slideIndex = 1;
-  showDivs(slideIndex);
-  
-  function plusDivs(n) {
-    showDivs(slideIndex += n);
-  }
-  
-  function showDivs(n) {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    if (n > x.length) {slideIndex = 1}
-    if (n < 1) {slideIndex = x.length}
-    for (i = 0; i < x.length; i++) {
-      x[i].style.display = "none";  
-    }
-    x[slideIndex-1].style.display = "block";  
-  }
-  </script>
-  <script>
-    var slideIndex = 1;
-    showDivs(slideIndex);
-    
-    function plusDivs(n) {
-      showDivs(slideIndex += n);
-    }
-    
-    function currentDiv(n) {
-      showDivs(slideIndex = n);
-    }
-    
-    function showDivs(n) {
-      var i;
-      var x = document.getElementsByClassName("mySlides");
-      var dots = document.getElementsByClassName("demo");
-      if (n > x.length) {slideIndex = 1}    
-      if (n < 1) {slideIndex = x.length}
-      for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";  
-      }
-      for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" w3-red", "");
-      }
-      x[slideIndex-1].style.display = "block";  
-      dots[slideIndex-1].className += " w3-red";
-    }
-    </script>
 </div>
 </header>
 
@@ -120,8 +55,7 @@
       <p>GetHotel aims at suggesting properties/hotels to you such that they would prefer the recommended property over others.
       </p>
       <a href="{%url 'about'%}" class="btn btn-light">Read More</a>
-  </div>
-  
+  </div> 
 </section>
 <section id="features">
   <div class="box bg-light">
@@ -165,7 +99,7 @@
       <a class="btn" href="{% url 'hotels' %}">Check Details</a>
       </div>
    <div class="column">
-      <img src="{% static 'img/soaltee.jpg' %}" alt="Shankar Hotel" style="width:100%">
+      <img src="{% static 'img/shankar.jpg' %}" alt="Shankar Hotel" style="width:100%">
       <h1>Shankar Hotel</h1>
       <a class="btn" href="{% url 'hotels' %}">Check Details</a>
     </div>
@@ -175,7 +109,7 @@
 <!-- Container (Contact Section) -->
 <div id="contact" class="bg-grey">
 
-  <h1 class="text-center"><span class="text-primary">Useful</span> Links</h1>
+  <br><h1 class="text-center"><span class="text-primary">Useful</span> Links</h1>
   
   <div class="row">
     <ul>
